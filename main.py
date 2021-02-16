@@ -4,6 +4,7 @@ from tabulate import tabulate
 
 from DataLoader import DataLoader
 from Support import Support
+from Confidence import Confidence
 
 
 def main(args):
@@ -19,17 +20,22 @@ def main(args):
     data_loader = DataLoader(args.filename)
     basket_occurrences = data_loader.get_item_occurrences()
 
-    if task == 0:
-        # Get and print itemsets with at least support s
-        print("Finding item sets with support {}:".format(args.support))
-        support = Support()
-        result = support.count_support(basket_occurrences, s=args.support)
-        print("\nDistinct item sets found: {}".format(len(result)))
-        data = [[set(i), result[i]] for i in result]
-        print(tabulate(data, headers=["Item set", "Support"]))
+    # Get item sets with at least support s
+    print("Finding item sets with support {}:".format(args.support))
+    support = Support()
+    itemsets = support.count_support(basket_occurrences, s=args.support)
+    print("\nDistinct item sets found: {}".format(len(itemsets)))
 
+    if task == 0:
+        # print found item sets
+        data = [[set(i), itemsets[i]] for i in itemsets]
+        print(tabulate(data, headers=["Item set", "Support"]))
     elif task == 1:
-        pass
+        # Get association rules
+        print("Finding association rules with confidence of at least {}:".format(args.confidence))
+        associations = Confidence.get_association(itemsets, c=args.confidence)
+        print("Found associations:")
+        Confidence.print_associations(associations)
 
     return
 
