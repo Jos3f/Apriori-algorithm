@@ -41,7 +41,7 @@ def main(args):
 
 
 # Default dataset path
-filename = Path('Data/T10I4D100K.dat')
+filename = Path('Data/example_dataset.dat')
 # Valid tasks
 tasks = {'frequent': 0, 'association': 1}
 
@@ -52,9 +52,9 @@ if __name__ == '__main__':
     parser.add_argument('-t', '--task', type=str, default='frequent', choices=tasks.keys(),
                         help='Task to perform.')
     parser.add_argument('-f', '--filename', type=str, default=filename,
-                        help='Dataset path. The data should contain rows of space separated item indices where each '
+                        help='Dataset path. The data should contain rows of space-separated item indices where each '
                              'row corresponds to a basket.')
-    parser.add_argument('-s', '--support', type=int, default=1000, help='The least support required to be '
+    parser.add_argument('-s', '--support', type=int, default=500, help='The least support required to be '
                                                                           'considered frequent.')
     parser.add_argument('-c', '--confidence', type=float, default=0.5, help='The least confidence required for '
                                                                             'association rules.')
