@@ -1,1 +1,3 @@
-Data/
+Data/*.dat
+Data/*.txt
+Data/*.png

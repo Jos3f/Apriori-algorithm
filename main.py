@@ -5,6 +5,7 @@ from tabulate import tabulate
 from DataLoader import DataLoader
 from Support import Support
 from Confidence import Confidence
+from Data.DataGen import generate_sample_data
 
 
 def main(args):
